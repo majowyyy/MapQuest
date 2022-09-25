@@ -99,3 +99,34 @@ def get_input():
 #creating a result label that will be displayed on the window
 msg = StringVar()
 lbl = Label( win, textvariable=msg)
+
+#function to close the window
+def destroy():
+    win.destroy()
+
+#create a text box and label widget for source city
+source_label = Label( win, text= "Source City")
+startloc_txt = Text( win, height=2, width=40)
+source_label.pack(padx=5, pady=5)
+startloc_txt.pack()
+
+#create a scroll bar widget for the result
+scrollbar = Scrollbar(win)
+
+#create a tetx box and label widget for destination city
+destination_label = Label(win, text="Destination City")
+destloc_txt = Text(win, height=2, width=40)
+destination_label.pack(padx=5, pady=5)
+destloc_txt.pack()
+
+#create a text box and label widget for the gas price
+gas_label = Label(win, text="Gas Price")
+gas_txt = Text(win, height=2, width=40)
+gas_label.pack(padx=5, pady=5)
+gas_txt.pack()
+
+#create a button for navigation
+navigate = Button(win, height=1, width=10, fg="white", bg='#4C6793', text="Navigate", command=get_input)
+navigate.pack(padx=5, pady=5)
+
+win.mainloop()
