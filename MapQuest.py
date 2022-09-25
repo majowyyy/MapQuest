@@ -37,3 +37,43 @@ def get_direction():
                 Label( win, text="Alternative route: Kilometers: " + str("{:.2f}".format(json_data_alt["route"]["distance"] * 1.6))).pack()
                 Label( win, text="Alternative Route: Fuel Used (Ltr): " + str("{:.3f}".format(json_data_alt["route"]["fuelUsed"]*3.78))).pack()
                 Label( win, text="Alternative Route: Amount of Money to be Spent on Fuel: " + str("{:.3f}".format(json_data_alt["route"]["fuelUsed"]*3.78 *int(gas)))).pack()
+
+ #display the route result with scrollbar
+                scrollbar.pack(side=RIGHT, fill = Y)
+                myList = Listbox(win,  yscrollcommand=scrollbar.set, width=100)
+
+                for each in json_data["route"]["legs"][0]["maneuvers"]:
+                        narrative = each["narrative"] + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)")
+                        myList.insert(END, narrative)
+
+                myList.pack(side=LEFT, fill=BOTH)
+                scrollbar.config(command=myList.yview)
+
+                #display the route result with scrollbar
+                scrollbar.pack(side=RIGHT, fill = Y)
+                myList = Listbox(win,  yscrollcommand=scrollbar.set, width=100)
+
+                for each in json_data_alt["route"]["legs"][0]["maneuvers"]:
+                        narrative = each["narrative"] + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)")
+                        myList.insert(END, narrative)
+                        
+                myList.pack(side=LEFT, fill=BOTH)
+                scrollbar.config(command=myList.yview)
+
+                #display the route result iwith scrollbar
+                scrollbar.pack(side=RIGHT, fill = Y)
+                myList = Listbox(win,  yscrollcommand=scrollbar.set, width=100)
+
+                #create button to close the application
+                Button(win, height=1, width=10, fg="white", bg='#4C6793',text="Close application", command=destroy).pack()
+                lbl.destroy()
+
+        elif json_status == 402:
+                msg.set("You have entered an Invalid Location!")
+                lbl.pack(padx=5, pady=5)
+        elif json_status == 611:
+                msg.set("You have entered an Invalid Location!")
+                lbl.pack(padx=5, pady=5)
+        else:
+                msg.set("Something went wrong! PLEASE TRY AGAIN")
+                lbl.pack(padx=5, pady=5)
