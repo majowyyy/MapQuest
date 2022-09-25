@@ -25,20 +25,22 @@ def get_direction():
         if json_status == 0:
 
                 navigate.destroy()
-                Label( win, text="Destination City Location").pack()
-                Label( win, text="Here are the Directions from " + (startloc) + " to " + (destloc)).pack()
+                Label( win, text = "").pack()
+                Label( win, text="DESTINATION CITY").pack()
+                Label( win, text="Directions from: " + (startloc) + " to " + (destloc)).pack()
 
-                Label( win, text="Total Trip Duration: " + (json_data["route"]["formattedTime"])).pack()
+                Label( win, text="Trip Duration: " + (json_data["route"]["formattedTime"])).pack()
                 Label( win, text="Kilometers: " + str("{:.2f}".format(json_data["route"]["distance"] * 1.6))).pack()
                 Label( win, text="Fuel Used (Ltr): " + str("{:.3f}".format(json_data["route"]["fuelUsed"]*3.78))).pack()
-                Label( win, text="Amount of Money to be Spent on Fuel: " + str("{:.3f}".format(json_data["route"]["fuelUsed"]*3.78 *int(gas)))).pack()
+                Label( win, text="Money to be Spent on Fuel: " + str("{:.3f}".format(json_data["route"]["fuelUsed"]*3.78 *int(gas)))).pack()
 
-                Label( win, text="Alternative Route: Total Trip Duration: " + (json_data_alt["route"]["formattedTime"])).pack()
+                Label( win, text="Alternative Route: Trip Duration: " + (json_data_alt["route"]["formattedTime"])).pack()
                 Label( win, text="Alternative route: Kilometers: " + str("{:.2f}".format(json_data_alt["route"]["distance"] * 1.6))).pack()
                 Label( win, text="Alternative Route: Fuel Used (Ltr): " + str("{:.3f}".format(json_data_alt["route"]["fuelUsed"]*3.78))).pack()
-                Label( win, text="Alternative Route: Amount of Money to be Spent on Fuel: " + str("{:.3f}".format(json_data_alt["route"]["fuelUsed"]*3.78 *int(gas)))).pack()
+                Label( win, text="Alternative Route: Money to be Spent on Fuel: " + str("{:.3f}".format(json_data_alt["route"]["fuelUsed"]*3.78 *int(gas)))).pack()
+                Label( win, text = "").pack()
 
- #display the route result with scrollbar
+                #display the route result with scrollbar
                 scrollbar.pack(side=RIGHT, fill = Y)
                 myList = Listbox(win,  yscrollcommand=scrollbar.set, width=100)
 
@@ -49,23 +51,8 @@ def get_direction():
                 myList.pack(side=LEFT, fill=BOTH)
                 scrollbar.config(command=myList.yview)
 
-                #display the route result with scrollbar
-                scrollbar.pack(side=RIGHT, fill = Y)
-                myList = Listbox(win,  yscrollcommand=scrollbar.set, width=100)
-
-                for each in json_data_alt["route"]["legs"][0]["maneuvers"]:
-                        narrative = each["narrative"] + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)")
-                        myList.insert(END, narrative)
-                        
-                myList.pack(side=LEFT, fill=BOTH)
-                scrollbar.config(command=myList.yview)
-
-                #display the route result iwith scrollbar
-                scrollbar.pack(side=RIGHT, fill = Y)
-                myList = Listbox(win,  yscrollcommand=scrollbar.set, width=100)
-
                 #create button to close the application
-                Button(win, height=1, width=10, fg="white", bg='#4C6793',text="Close application", command=destroy).pack()
+                Button(win, height=10, width=10, text="Close", command=destroy, bg="red", fg="white").pack()
                 lbl.destroy()
 
         elif json_status == 402:
@@ -102,7 +89,7 @@ lbl = Label( win, textvariable=msg)
 
 #function to close the window
 def destroy():
-    win.destroy()
+        win.destroy()
 
 #create a text box and label widget for source city
 source_label = Label( win, text= "Source City")
@@ -126,7 +113,7 @@ gas_label.pack(padx=5, pady=5)
 gas_txt.pack()
 
 #create a button for navigation
-navigate = Button(win, height=1, width=10, fg="white", bg='#4C6793', text="Navigate", command=get_input)
+navigate= Button(win, height=2, width=10, bg="#4C6793", fg="white", text="Navigate", command=get_input)
 navigate.pack(padx=5, pady=5)
 
 win.mainloop()
