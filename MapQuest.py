@@ -106,6 +106,12 @@ destloc_txt = Text(win, height=2, width=40)
 destination_label.pack(padx=5, pady=5)
 destloc_txt.pack()
 
+#create a text box and label widget for the gas price
+gas_label = Label(win, text="Gas Price")
+gas_txt = Text(win, height=2, width=40)
+gas_label.pack(padx=5, pady=5)
+gas_txt.pack()
+
 #create a button for navigation
 navigate= Button(win, height=2, width=10, bg="#4C6793", fg="white", text="Navigate", command=get_input)
 navigate.pack(padx=5, pady=5)
