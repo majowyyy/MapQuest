@@ -29,7 +29,17 @@ def get_direction():
                 Label( win, text="DESTINATION CITY").pack()
                 Label( win, text="Directions from: " + (startloc) + " to " + (destloc)).pack()
 
-                
+                Label( win, text="Trip Duration: " + (json_data["route"]["formattedTime"])).pack()
+                Label( win, text="Kilometers: " + str("{:.2f}".format(json_data["route"]["distance"] * 1.6))).pack()
+                Label( win, text="Fuel Used (Ltr): " + str("{:.3f}".format(json_data["route"]["fuelUsed"]*3.78))).pack()
+                Label( win, text="Money to be Spent on Fuel: " + str("{:.3f}".format(json_data["route"]["fuelUsed"]*3.78 *int(gas)))).pack()
+
+                Label( win, text="Alternative Route: Trip Duration: " + (json_data_alt["route"]["formattedTime"])).pack()
+                Label( win, text="Alternative route: Kilometers: " + str("{:.2f}".format(json_data_alt["route"]["distance"] * 1.6))).pack()
+                Label( win, text="Alternative Route: Fuel Used (Ltr): " + str("{:.3f}".format(json_data_alt["route"]["fuelUsed"]*3.78))).pack()
+                Label( win, text="Alternative Route: Money to be Spent on Fuel: " + str("{:.3f}".format(json_data_alt["route"]["fuelUsed"]*3.78 *int(gas)))).pack()
+                Label( win, text = "").pack()
+
                 #display the route result with scrollbar
                 scrollbar.pack(side=RIGHT, fill = Y)
                 myList = Listbox(win,  yscrollcommand=scrollbar.set, width=100)
