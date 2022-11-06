@@ -69,3 +69,29 @@ def get_direction():
                 msg.set("Something went wrong! PLEASE TRY AGAIN")
                 lbl.pack(padx=5, pady=5)
 
+#function that will get the value of text box
+def get_input():
+   global startloc
+   global destloc
+   global gas
+   startloc = startloc_txt.get(1.0, "end-1c")
+   destloc = destloc_txt.get(1.0, "end-1c")
+   gas = gas_txt.get(1.0, "end-1c")
+   if(startloc and destloc and gas):
+       if(gas.isdigit()):
+        get_direction()
+       else:
+        msg.set("The Gas Price must be an integer!")
+        lbl.pack(padx=5, pady=5)    
+   else:
+       msg.set("Please fill up completely!")
+       lbl.pack(padx=5, pady=5)
+
+#creating a result label that will be displayed on the window
+msg = StringVar()
+lbl = Label( win, textvariable=msg)
+
+#function to close the window
+def destroy():
+        win.destroy()
+
