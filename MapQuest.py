@@ -1,6 +1,7 @@
 import urllib.parse
 import requests
 from tkinter import *
+from tkinter.ttk import *
 
 #Create an instance of tkinter window or frame
 win=Tk()
@@ -96,7 +97,8 @@ def destroy():
         win.destroy()
 
 #create a text box and label widget for source city
-source_label = Label( win, text= "Source City")
+source_label = Label( win, text= "Source City",font =
+               ('calibri', 15, 'bold'))
 startloc_txt = Text( win, height=2, width=40)
 source_label.pack(padx=5, pady=5)
 startloc_txt.pack()
@@ -104,20 +106,34 @@ startloc_txt.pack()
 #create a scroll bar widget for the result
 scrollbar = Scrollbar(win)
 
-#create a tetx box and label widget for destination city
-destination_label = Label(win, text="Destination City")
+#create a text box and label widget for destination city
+destination_label = Label(win, text="Destination City",font =
+               ('calibri', 15, 'bold'))
 destloc_txt = Text(win, height=2, width=40)
 destination_label.pack(padx=5, pady=5)
 destloc_txt.pack()
 
 #create a text box and label widget for the gas price
-gas_label = Label(win, text="Gas Price")
+gas_label = Label(win, text="Gas Price", font =
+               ('calibri', 15, 'bold'))
 gas_txt = Text(win, height=2, width=40)
 gas_label.pack(padx=5, pady=5)
 gas_txt.pack()
 
+# Create style Object
+style = Style()
+ 
+style.configure('TButton', font =
+               ('calibri', 15, 'bold'),
+                    borderwidth = '4')
+
+# Changes will be reflected
+# by the movement of mouse.
+style.map('TButton', foreground = [('active', '!disabled', 'white')],
+                     background = [('active', 'black')])
+
 #create a button for navigation
-navigate= Button(win, height=2, width=10, bg="#4C6793", fg="white", text="Navigate", command=get_input)
-navigate.pack(padx=5, pady=5)
+navigate= Button(win, text="Navigate", command=get_input)
+navigate.pack(pady = 10, padx = 10)
 
 win.mainloop()
