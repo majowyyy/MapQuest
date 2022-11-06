@@ -4,7 +4,7 @@ from tkinter import *
 
 #Create an instance of tkinter window or frame
 win=Tk()
-win.resizable(False, False)
+win.resizable(True, True)
 win.title("Map Quest with Gas Calculator")
 startloc,destloc,gas = "","",""
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
@@ -23,6 +23,10 @@ def get_direction():
 
         # if successfull, display the result
         if json_status == 0:
+
+                win=Tk()
+                win.resizable(True, True)
+                win.title("Results")
 
                 navigate.destroy()
                 Label( win, text = "").pack()
