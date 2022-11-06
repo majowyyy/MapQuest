@@ -95,7 +95,6 @@ lbl = Label( win, textvariable=msg)
 #function to close the window
 def destroy():
         win.destroy()
-
 #create a text box and label widget for source city
 source_label = Label( win, text= "Source City",font =
                ('calibri', 15, 'bold'))
@@ -137,3 +136,4 @@ navigate= Button(win, text="Navigate", command=get_input)
 navigate.pack(pady = 10, padx = 10)
 
 win.mainloop()
+
